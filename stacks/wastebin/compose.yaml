@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  wastebin:
+    environment:
+      - WASTEBIN_DATABASE_PATH=/data/state.db
+    ports:
+      - 8988:8088
+    volumes:
+      - wb-data:/data
+    image: oufinx/wastebin-arm64:latest
+    restart: always
+volumes:
+  wb-data: null

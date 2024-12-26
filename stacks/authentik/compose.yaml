@@ -1,0 +1,73 @@
+version: "3.8"
+services:
+    authentik-db:
+        image: docker.io/library/postgres:16-alpine
+        container_name: authentik-db
+        restart: unless-stopped
+        volumes:
+            - ./data-database:/var/lib/postgresql/data
+        networks:
+            - authentik
+        env_file:
+            - .env
+    authentik-redis:
+        image: docker.io/library/redis:alpine
+        container_name: authentik-redis
+        command: --save 60 1 --loglevel warning
+        restart: unless-stopped
+        volumes:
+            - ./data-redis:/data
+        networks:
+            - authentik
+        env_file:
+            - .env
+    authentik-server:
+        image: ghcr.io/goauthentik/server:latest
+        container_name: authentik-server
+        restart: unless-stopped
+        command: server
+        environment:
+            AUTHENTIK_REDIS__HOST: authentik-redis
+            AUTHENTIK_POSTGRESQL__HOST: authentik-db
+            AUTHENTIK_POSTGRESQL__USER: ${POSTGRES_USER}
+            AUTHENTIK_POSTGRESQL__NAME: ${POSTGRES_DB}
+            AUTHENTIK_POSTGRESQL__PASSWORD: ${POSTGRES_PASSWORD}
+        volumes:
+            - ./style.css:/web/dist/custom.css
+			- ./data-media:/media
+        networks:
+            - authentik
+        ports:
+            - 9000:9000
+            - 9443:9443
+        depends_on:
+            - authentik-db
+            - authentik-redis
+        env_file:
+            - .env
+    authentik-worker:
+        image: ghcr.io/goauthentik/server:latest
+        container_name: authentik-worker
+        restart: unless-stopped
+        command: worker
+        environment:
+            AUTHENTIK_REDIS__HOST: authentik-redis
+            AUTHENTIK_POSTGRESQL__HOST: authentik-db
+            AUTHENTIK_POSTGRESQL__USER: ${POSTGRES_USER}
+            AUTHENTIK_POSTGRESQL__NAME: ${POSTGRES_DB}
+            AUTHENTIK_POSTGRESQL__PASSWORD: ${POSTGRES_PASSWORD}
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./data-media:/media
+            - ./data-certs:/certs
+            - ./data-templates:/templates
+        networks:
+            - authentik
+        privileged: true
+        env_file:
+            - .env
+        depends_on:
+            - authentik-db
+            - authentik-redis
+networks:
+    authentik:

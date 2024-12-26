@@ -34,7 +34,7 @@ services:
             AUTHENTIK_POSTGRESQL__PASSWORD: ${POSTGRES_PASSWORD}
         volumes:
             - ./style.css:/web/dist/custom.css
-			- ./data-media:/media
+            - ./data-media:/media
         networks:
             - authentik
         ports:

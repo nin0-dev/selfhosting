@@ -22,8 +22,8 @@ services:
             - FORGEJO__database__NAME=forgejo
             - FORGEJO__database__USER=forgejo
             - FORGEJO__database__PASSWD=forgejo
-		env_file:
-			- .env
+        env_file:
+            - .env
     db:
         restart: always
         image: postgres:14

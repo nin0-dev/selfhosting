@@ -46,8 +46,8 @@ services:
         max-file: "1"
     depends_on:
       - redis
-	env_file: 
-		- .env
+    env_file: 
+        - .env
 networks:
   searxng: null
 volumes:

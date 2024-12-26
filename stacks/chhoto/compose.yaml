@@ -10,6 +10,6 @@ services:
       - ./data-database:/db
     ports:
       - 4567:4567
-	env_file: .env
+    env_file: .env
 volumes:
   db: null

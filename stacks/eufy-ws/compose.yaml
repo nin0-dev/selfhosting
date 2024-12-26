@@ -10,7 +10,7 @@ services:
             - './data-eufyws:/data'
         image: bropat/eufy-security-ws:latest
         restart: unless-stopped
-		env_file:
-			- .env
+        env_file:
+            - .env
 volumes:
     eufy-ws-data:

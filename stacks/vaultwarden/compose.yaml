@@ -9,7 +9,7 @@ services:
       - ./data-vw:/data
     ports:
       - 985:80
-	env_file:
-	- .env
+    env_file:
+    - .env
 volumes:
   vw-data: null

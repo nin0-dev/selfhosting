@@ -11,5 +11,5 @@ services:
       - DOCKER_ENABLE_SECURITY=false
       - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
     restart: unless-stopped
-	env_file:
-		- .env
+    env_file:
+        - .env

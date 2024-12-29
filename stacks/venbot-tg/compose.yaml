@@ -1,0 +1,6 @@
+version: '3.9'
+
+services:
+  venbot-tg:
+    image: venbot-tg
+    restart: unless-stopped

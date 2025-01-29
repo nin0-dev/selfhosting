@@ -6,7 +6,7 @@ services:
     ports:
       - 8988:8088
     volumes:
-      - wb-data:/data
+      - ./data-wb:/data
     image: oufinx/wastebin-arm64:latest
     restart: always
 volumes:

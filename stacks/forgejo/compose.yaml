@@ -11,7 +11,7 @@ services:
             - /etc/timezone:/etc/timezone:ro
             - /etc/localtime:/etc/localtime:ro
         ports:
-            - 3004:3000
+            - 1:3000
         depends_on:
             - db
         environment:

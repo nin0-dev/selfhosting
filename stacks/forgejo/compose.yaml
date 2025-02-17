@@ -3,7 +3,7 @@ services:
     forgejo:
         container_name: forgejo
         restart: always
-        image: codeberg.org/forgejo/forgejo:9
+        image: codeberg.org/forgejo/forgejo:10
         networks:
             - forgejo
         volumes:

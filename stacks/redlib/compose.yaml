@@ -9,7 +9,7 @@ services:
         read_only: true
         security_opt:
             - no-new-privileges:true
-        env:
+        environment:
             - REDLIB_DEFAULT_THEME=rosebox
         cap_drop:
             - ALL

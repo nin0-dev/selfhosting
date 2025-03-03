@@ -1,13 +1,13 @@
+name: vaultwarden
+
 services:
     vaultwarden:
         image: vaultwarden/server:latest
         container_name: vaultwarden
         restart: always
         volumes:
-            - ./data-vw:/data
+            - ../../data/vaultwarden:/data
         ports:
             - 985:80
         env_file:
             - .env
-volumes:
-    vw-data: null

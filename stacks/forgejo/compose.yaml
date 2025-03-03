@@ -26,6 +26,7 @@ services:
         env_file:
             - .env
     db:
+        container_name: forgejo-db
         restart: always
         image: postgres:14
         environment: # hardcoded because who cares

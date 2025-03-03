@@ -13,5 +13,5 @@ services:
             - 6970:80/tcp # http web interface
             - 6971:3000/tcp # initial setup web interface
         volumes:
-            - ../../config/adguard-home:/opt/adguardhome/conf # app configuration
-            - ../../data/adguard-home/work:/opt/adguardhome/work # app working directory
+            - ../../data/adguard-home/config:/opt/adguardhome/conf # app configuration
+            - ../../data/adguard-home/work:/opt/config

@@ -1,15 +1,17 @@
+name: chhoto
+
 services:
-    chhoto-url:
+    chhoto:
         image: sintan1729/chhoto-url:latest
         restart: unless-stopped
-        container_name: chhoto-url
+        container_name: chhoto
+        user: "1000:1000"
         environment:
             - db_url=/db/urls.sqlite
             - public_mode=Enable
+            - site_url=https://s.nin0.dev
         volumes:
-            - ./data-database:/db
+            - ../../data/chhoto:/db
         ports:
             - 4567:4567
         env_file: .env
-volumes:
-    db: null

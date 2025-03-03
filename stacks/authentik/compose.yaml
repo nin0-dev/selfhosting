@@ -1,4 +1,5 @@
-version: "3.8"
+name: authentik
+
 services:
     authentik-db:
         image: docker.io/library/postgres:16-alpine

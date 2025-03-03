@@ -1,25 +1,25 @@
 version: "3.7"
 services:
-  frigate:
-    container_name: frigate
-    privileged: true # this may not be necessary for all setups
-    restart: unless-stopped
-    image: ghcr.io/blakeblackshear/frigate:stable
-    shm_size: 64mb # update for your cameras based on calculation above
-    devices:
-      - /dev/bus/usb:/dev/bus/usb
-      - /dev/apex_0:/dev/apex_0
-      - /dev/video11:/dev/video11
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./data-config:/config
-      - ./data-certs:/etc/letsencrypt/live/frigate:ro
-      - ./data-media:/media/frigate
-      - type: tmpfs
-        target: /tmp/cache
-        tmpfs:
-          size: 1000000000
-    env_file:
-        - .env
-    ports:
-      - 5000:5000
+    frigate:
+        container_name: frigate
+        privileged: true # this may not be necessary for all setups
+        restart: unless-stopped
+        image: ghcr.io/blakeblackshear/frigate:stable
+        shm_size: 64mb # update for your cameras based on calculation above
+        devices:
+            - /dev/bus/usb:/dev/bus/usb
+            - /dev/apex_0:/dev/apex_0
+            - /dev/video11:/dev/video11
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - ./data-config:/config
+            - ./data-certs:/etc/letsencrypt/live/frigate:ro
+            - ./data-media:/media/frigate
+            - type: tmpfs
+              target: /tmp/cache
+              tmpfs:
+                  size: 1000000000
+        env_file:
+            - .env
+        ports:
+            - 5000:5000

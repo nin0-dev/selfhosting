@@ -1,15 +1,15 @@
 services:
-  chhoto-url:
-    image: sintan1729/chhoto-url:latest
-    restart: unless-stopped
-    container_name: chhoto-url
-    environment:
-      - db_url=/db/urls.sqlite
-      - public_mode=Enable
-    volumes:
-      - ./data-database:/db
-    ports:
-      - 4567:4567
-    env_file: .env
+    chhoto-url:
+        image: sintan1729/chhoto-url:latest
+        restart: unless-stopped
+        container_name: chhoto-url
+        environment:
+            - db_url=/db/urls.sqlite
+            - public_mode=Enable
+        volumes:
+            - ./data-database:/db
+        ports:
+            - 4567:4567
+        env_file: .env
 volumes:
-  db: null
+    db: null

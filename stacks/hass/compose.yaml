@@ -1,11 +1,11 @@
 version: "3.8"
 services:
-  homeassistant:
-    restart: unless-stopped
-    image: ghcr.io/home-assistant/home-assistant:stable
-    volumes:
-      - ./data-config:/config
-      - /etc/localtime:/etc/localtime:ro
-      - /run/dbus:/run/dbus:ro
-    privileged: true
-    network_mode: host # runs with host network to be able to scan for devices. port is 8123 by default
+    homeassistant:
+        restart: unless-stopped
+        image: ghcr.io/home-assistant/home-assistant:stable
+        volumes:
+            - ./data-config:/config
+            - /etc/localtime:/etc/localtime:ro
+            - /run/dbus:/run/dbus:ro
+        privileged: true
+        network_mode: host # runs with host network to be able to scan for devices. port is 8123 by default

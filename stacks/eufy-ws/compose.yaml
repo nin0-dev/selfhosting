@@ -7,7 +7,7 @@ services:
         environment:
             - PORT=8371
         volumes:
-            - './data-eufyws:/data'
+            - "./data-eufyws:/data"
         image: bropat/eufy-security-ws:latest
         restart: unless-stopped
         env_file:

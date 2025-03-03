@@ -1,13 +1,14 @@
-name: adguardhome
+name: adguard-home
 
 services:
-  adguardhome:
-    image: adguard/adguardhome
-    ports:
-      - 53:53/tcp # plain dns over tcp
-      - 53:53/udp # plain dns over udp
-      - 6970:80/tcp # http web interface
-      - 6971:3000/tcp # initial setup web interface
-    volumes:
-      - ./data-config:/opt/adguardhome/conf # app configuration
-      - ./data-work:/opt/adguardhome/work # app working directory
+    adguard-home:
+        container_name: adguard-home
+        image: adguard/adguardhome
+        ports:
+            - 53:53/tcp # plain dns over tcp
+            - 53:53/udp # plain dns over udp
+            - 6970:80/tcp # http web interface
+            - 6971:3000/tcp # initial setup web interface
+        volumes:
+            - ./data-config:/opt/adguardhome/conf # app configuration
+            - ./data-work:/opt/adguardhome/work # app working directory

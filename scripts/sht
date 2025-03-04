@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ "$#" -lt 1 ]; then
+    echo "Usage: sht <command> <args>"
+    exit 1
+fi
+
+command=$1
+shift
+
+scripts/sht-$command.sh "$@"

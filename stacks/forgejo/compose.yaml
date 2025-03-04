@@ -4,7 +4,7 @@ services:
     forgejo:
         container_name: forgejo
         restart: always
-        image: codeberg.org/forgejo/forgejo:10
+        image: codeberg.org/forgejo/forgejo:10 # pinned to major ver to avoid issues
         networks:
             - forgejo
         volumes:
@@ -28,7 +28,7 @@ services:
     db:
         container_name: forgejo-db
         restart: always
-        image: postgres:14
+        image: postgres:latest
         environment: # hardcoded because who cares
             - POSTGRES_USER=forgejo
             - POSTGRES_PASSWORD=forgejo

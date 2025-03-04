@@ -6,7 +6,7 @@ _() {
         mkdir -p "$volume"
     done
     if [ -f .env.example ] && [ ! -f .env ]; then
-        sht env "$1"
+        (cd ../../ && sht env $1)
     fi
     docker compose up -d
 } && _ "$@"

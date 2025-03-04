@@ -4,8 +4,22 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
+pwd=$(pwd)
+
 command=$1
 shift
+
+if [[ $pwd == */stacks/* ]]; then
+    _() {
+        cd ../..
+        scripts/sht-$command.sh "$(basename "$pwd")"
+    } && _ "$@"
+    unset -f _
+    exit 0
+elif [[ $pwd == */data/* || $pwd == */scripts/* || $pwd == */stacks ]]; then
+    echo "you can only invoke sht commands in the root directory or in a stack directory."
+    exit 1
+fi
 
 scripts/sht-$command.sh "$@"
 

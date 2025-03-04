@@ -5,6 +5,9 @@ _() {
     for volume in $volumes; do
         mkdir -p "$volume"
     done
+    if [ -f .env.example ] && [ ! -f .env ]; then
+        sht env "$1"
+    fi
     docker compose up -d
 } && _ "$@"
 unset -f _

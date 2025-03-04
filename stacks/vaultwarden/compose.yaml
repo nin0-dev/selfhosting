@@ -11,3 +11,14 @@ services:
             - 985:80
         env_file:
             - .env
+    vw-ldap:
+        container_name: vw-ldap
+        user: "1000:1000"
+        image: vividboarder/vaultwarden_ldap:2.0.2
+        depends_on:
+            - vaultwarden
+        volumes:
+            - ../../data/vw-ldap:/config
+        environment:
+            CONFIG_PATH: /config/config.toml
+        restart: always

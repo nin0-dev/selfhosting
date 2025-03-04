@@ -6,7 +6,7 @@ services:
         restart: unless-stopped
         image: ghcr.io/home-assistant/home-assistant:stable
         volumes:
-            - ./data-config:/config
+            - ../../data/hass:/config
             - /etc/localtime:/etc/localtime:ro
             - /run/dbus:/run/dbus:ro
         privileged: true

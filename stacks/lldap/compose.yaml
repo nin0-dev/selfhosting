@@ -1,0 +1,17 @@
+name: lldap
+
+services:
+    lldap:
+        image: lldap/lldap:stable
+        ports:
+            - "3890:3890"
+            - "17170:17170"
+        volumes:
+            - "../../data/lldap:/data"
+        environment:
+            - UID=1000
+            - GID=1000
+            - TZ=America/Montreal
+            - LLDAP_LDAP_BASE_DN=dc=nin0,dc=dev
+        env_file:
+            - .env

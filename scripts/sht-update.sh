@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 docker_pull() {
   for stack in stacks/* ; do
-    touch $stack/.env # needed else docker shits itself
+    if [ -f .env.example ] && [ ! -f .env ]; then
+        touch $stack/.env # needed else docker shits itself
+    fi
     if ! yq e '.services[].image' "$stack/compose.yaml" | grep -Eq ':(latest|stable)'; then
       IMAGE=`yq e '.services[].image' "$stack/compose.yaml" | tr '\n' ','`
       echo -e "\033[1;33mwarning: $IMAGE may be pinned to a specific version.\033[0m"

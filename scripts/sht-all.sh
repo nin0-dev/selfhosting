@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 for stack in stacks/*; do
     stack_name=$(basename "$stack")
     scripts/sht-info.sh $stack_name

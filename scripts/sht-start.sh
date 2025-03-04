@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 _() {
     cd stacks/$1
     volumes=$(yq e '.services[].volumes[]' compose.yaml | grep -oP '^\S+(?=:)' | sort -u) # i love AI

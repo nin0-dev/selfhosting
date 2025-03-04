@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 for stack in stacks/*; do
     stack_name=$(basename "$stack")
     echo "Stop $stack_name"

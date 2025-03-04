@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 _() {
   if [ -z "data/$1" ]; then
     echo "what"

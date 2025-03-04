@@ -1,0 +1,19 @@
+services:
+    pocket-id:
+        image: ghcr.io/pocket-id/pocket-id
+        restart: unless-stopped
+        environment:
+            - PUBLIC_APP_URL=https://auth.nin0.dev
+            - TRUST_PROXY=true
+            - PUID=1000
+            - PGID=1000
+        ports:
+            - 7069:80
+        volumes:
+            - "../../data/pocket-id:/app/backend/data"
+        healthcheck:
+            test: "curl -f http://localhost/health"
+            interval: 1m30s
+            timeout: 5s
+            retries: 2
+            start_period: 10s

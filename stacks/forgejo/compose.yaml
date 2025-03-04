@@ -9,8 +9,8 @@ services:
             - forgejo
         volumes:
             - ../../data/forgejo/forgejo:/data
-            - /etc/timezone:/etc/timezone:ro
-            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone
+            - /etc/localtime:/etc/localtime
         ports:
             - 1:3000
         depends_on:

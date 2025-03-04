@@ -2,11 +2,11 @@ name: dash
 
 services:
     dash:
-        image: mauricenino/dashdot:latest
+        image: mauricenino/dashdot:5.9.0 # version pin this image since we are giving host access 
         restart: unless-stopped
         privileged: true
         volumes:
-            - /:/mnt/host:ro
+            - /:/mnt/host
         environment:
             - DASHDOT_ENABLE_CPU_TEMPS=true
         ports:

@@ -1,4 +1,5 @@
-version: "3.8"
+name: redlib
+
 services:
     web:
         restart: always
@@ -24,5 +25,3 @@ services:
             interval: 5m
             timeout: 3s
         image: quay.io/redlib/redlib:latest-arm
-        env_file:
-            - .env

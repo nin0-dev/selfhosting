@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 docker_pull() {
   for stack in stacks/* ; do
-    if [ -f .env.example ] && [ ! -f .env ]; then
+    if [ -f $stack/.env.example ] && [ ! -f $stack/.env ]; then
         touch $stack/.env # needed else docker shits itself
     fi
     if ! yq e '.services[].image' "$stack/compose.yaml" | grep -Eq ':(latest|stable)'; then

@@ -5,4 +5,4 @@ if [ -z "stacks/$1" ]; then
 fi
 echo "You are now in the $1 directory."
 cd stacks/$1
-pwd
+bash

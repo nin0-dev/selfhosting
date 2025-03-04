@@ -1,6 +1,6 @@
 services:
     pocket-id:
-        image: ghcr.io/pocket-id/pocket-id
+        image: ghcr.io/pocket-id/pocket-id:latest
         restart: unless-stopped
         environment:
             - PUBLIC_APP_URL=https://auth.nin0.dev

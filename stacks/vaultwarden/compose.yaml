@@ -14,7 +14,7 @@ services:
     vw-ldap:
         container_name: vw-ldap
         user: "1000:1000"
-        image: vividboarder/vaultwarden_ldap:2.0.2
+        image: vividboarder/vaultwarden_ldap:latest
         depends_on:
             - vaultwarden
         volumes:

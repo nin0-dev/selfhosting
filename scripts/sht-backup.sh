@@ -20,7 +20,7 @@ if [[ "$basedir" != "sht" && "$basedir" != "selfhosting" ]]; then
     exit 1
 fi
 
-curl -H "Content-Type: application/json" -d "{\"content\": \"-# :floppy_disk: **Starting backup (<t:$(date +%s):D> at <t:$(date +%s):T>)." "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK"
+curl -H "Content-Type: application/json" -d "{\"content\": \"-# :floppy_disk: **Starting backup (<t:$(date +%s):D> at <t:$(date +%s):T>).\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK"
 
 # Prepare
 working_dir="$(hostname)-backup-$(date +'%d-%m-%Y-%H-%M-%S')"

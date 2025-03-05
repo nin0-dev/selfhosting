@@ -58,6 +58,9 @@ chown nin0:nin0 $working_dir.tgz
 yap uploading backup...
 sudo -u nin0 rclone copy $working_dir.tgz iCloud:Backup/
 
+yap removing old backups...
+sudo -u nin0 /sht/scripts/sht-clean-backup.sh $working_dir
+
 # Clean up
 contents="Archive content: $(ls -L $working_dir | tr '\n' ' ')\\n\\nDocker data: $(ls -L data | tr '\n' ' ')"
 yap done!

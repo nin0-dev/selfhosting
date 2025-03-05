@@ -8,6 +8,7 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
         network_mode: service:tailscale
     redirect:
+        container_name: redirect-dozzle
         image: morbz/docker-web-redirect:v1.0
         restart: always
         environment:

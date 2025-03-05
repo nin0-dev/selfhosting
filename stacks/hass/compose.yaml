@@ -10,4 +10,21 @@ services:
             - /etc/localtime:/etc/localtime
             - /run/dbus:/run/dbus
         privileged: true
-        network_mode: host # runs with host network to be able to scan for devices. port is 8123 by default
+        network_mode: service:tailscale
+    tailscale:
+        container_name: tailscale-hass
+        image: tailscale/tailscale:latest
+        environment:
+            - TS_STATE_DIR=/var/lib/tailscale
+            - TS_EXTRA_ARGS=--advertise-tags=tag:container --hostname=homeassistant --ssh
+        env_file:
+            - ../../.tskey
+        volumes:
+            - ../../data/tailscale-hass:/var/lib/tailscale
+        devices:
+            - /dev/net/tun:/dev/net/tun
+        cap_add:
+            - net_admin
+            - sys_module
+        restart: unless-stopped
+        network_mode: host

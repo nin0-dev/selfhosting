@@ -7,11 +7,22 @@ services:
         image: adguard/adguardhome:latest
         cap_add:
             - CAP_NET_BIND_SERVICE
-        ports:
-            - 53:53/tcp # plain dns over tcp
-            - 53:53/udp # plain dns over udp
-            - 6970:80/tcp # http web interface
-            - 6971:3000/tcp # initial setup web interface
         volumes:
             - ../../data/adguard-home/config:/opt/adguardhome/conf # app configuration
             - ../../data/adguard-home/work:/opt/config
+    tailscale:
+        container_name: tailscale-adguard-home
+        image: tailscale/tailscale:latest
+        environment:
+            - TS_STATE_DIR=/var/lib/tailscale
+            - TS_EXTRA_ARGS=--advertise-tags=tag:container --hostname=adguard --ssh
+        env_file:
+            - ../../.tskey
+        volumes:
+            - ../../data/tailscale-adguard-home:/var/lib/tailscale
+        devices:
+            - /dev/net/tun:/dev/net/tun
+        cap_add:
+            - net_admin
+            - sys_module
+        restart: unless-stopped

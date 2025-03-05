@@ -1,4 +1,5 @@
 .env
-data/
+data*/
 certs/
 .tskey
+*-backup-*

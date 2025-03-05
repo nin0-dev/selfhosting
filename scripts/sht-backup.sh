@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
+source .env
+
 yap() {
-    curl -H "Content-Type: application/json" -d "{\"content\": \"-# $@ (<t:$(date +%s):D> at <t:$(date +%s):T>)\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK" > /dev/null
+    echo -e "{\"content\": \"-# $@ (<t:$(date +%s):D> at <t:$(date +%s):T>)\"}"
+    curl -H "Content-Type: application/json" -d "{\"content\": \"-# $(echo $@) (<t:$(date +%s):D> at <t:$(date +%s):T>)\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK"
     echo -e "\033[1;33m>>> $@ <<<\033[0m"
 }
 
 start_time=$(date +%s)
-
-
 
 # Checks
 if [[ $EUID -ne 0 ]]; then
@@ -20,7 +21,7 @@ if [[ "$basedir" != "sht" && "$basedir" != "selfhosting" ]]; then
     exit 1
 fi
 
-curl -H "Content-Type: application/json" -d "{\"content\": \"-# :floppy_disk: **Starting backup (<t:$(date +%s):D> at <t:$(date +%s):T>).\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK"
+curl -sH "Content-Type: application/json" -d "{\"content\": \":floppy_disk: **Starting backup (<t:$(date +%s):D> at <t:$(date +%s):T>).**\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK" > /dev/null &
 
 # Prepare
 working_dir="$(hostname)-backup-$(date +'%d-%m-%Y-%H-%M-%S')"
@@ -67,5 +68,4 @@ yap done!
 rm -rf $working_dir*
 
 # Notify
-source .env
-curl -H "Content-Type: application/json" -d "{\"content\": \"**:floppy_disk: Backup done:** <t:$(date +%s):D> at <t:$(date +%s):T>.\\nName is \`$working_dir\`, took $(( $(date +%s) - $start_time )) seconds.\\n\`\`\`\\n$contents\\n\`\`\`\\n-# ||<@886685857560539176>||\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK" > /dev/null
+curl -sH "Content-Type: application/json" -d "{\"content\": \"**:floppy_disk: Backup done:** <t:$(date +%s):D> at <t:$(date +%s):T>.\\nName is \`$working_dir\`, took $(( $(date +%s) - $start_time )) seconds.\\n\`\`\`\\n$contents\\n\`\`\`\\n-# ||<@886685857560539176>||\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK" > /dev/null

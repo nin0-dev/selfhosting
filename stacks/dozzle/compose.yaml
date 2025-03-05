@@ -7,6 +7,12 @@ services:
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
         network_mode: service:tailscale
+    redirect:
+        image: morbz/docker-web-redirect:v1.0
+        restart: always
+        environment:
+            - REDIRECT_TARGET=logs:8080
+        network_mode: service:tailscale
     tailscale:
         container_name: tailscale-dozzle
         image: tailscale/tailscale:latest

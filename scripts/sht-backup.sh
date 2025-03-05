@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
 yap() {
+    curl -H "Content-Type: application/json" -d "{\"content\": \"-# $@ (<t:$(date +%s):D> at <t:$(date +%s):T>)\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK" > /dev/null
     echo -e "\033[1;33m>>> $@ <<<\033[0m"
 }
 
 start_time=$(date +%s)
 
+
+
 # Checks
 if [[ $EUID -ne 0 ]]; then
-    yap "elevating..."
     sudo "$0" "$@"
     exit $?
 fi
@@ -17,6 +19,8 @@ if [[ "$basedir" != "sht" && "$basedir" != "selfhosting" ]]; then
     echo "go to the base selfhosting root dir"
     exit 1
 fi
+
+curl -H "Content-Type: application/json" -d "{\"content\": \"-# :floppy_disk: **Starting backup (<t:$(date +%s):D> at <t:$(date +%s):T>)." "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK"
 
 # Prepare
 working_dir="$(hostname)-backup-$(date +'%d-%m-%Y-%H-%M-%S')"
@@ -61,4 +65,4 @@ rm -rf $working_dir*
 
 # Notify
 source .env
-curl -H "Content-Type: application/json" -d "{\"content\": \"**:floppy_disk: Backup done:** <t:$(date +%s):D> at <t:$(date +%s):T>.\\nName is \`$working_dir\`, took $(( $(date +%s) - $start_time )) seconds.\\n\`\`\`\\n$contents\\n\`\`\`\\n-# ||<@886685857560539176>||\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK"
+curl -H "Content-Type: application/json" -d "{\"content\": \"**:floppy_disk: Backup done:** <t:$(date +%s):D> at <t:$(date +%s):T>.\\nName is \`$working_dir\`, took $(( $(date +%s) - $start_time )) seconds.\\n\`\`\`\\n$contents\\n\`\`\`\\n-# ||<@886685857560539176>||\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK" > /dev/null

@@ -10,6 +10,7 @@ services:
         volumes:
             - ../../data/adguard-home/config:/opt/adguardhome/conf # app configuration
             - ../../data/adguard-home/work:/opt/config
+        network_mode: service:tailscale
     tailscale:
         container_name: tailscale-adguard-home
         image: tailscale/tailscale:latest

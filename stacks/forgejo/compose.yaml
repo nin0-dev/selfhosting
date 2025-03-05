@@ -28,7 +28,7 @@ services:
     db:
         container_name: forgejo-db
         restart: always
-        image: postgres:latest
+        image: postgres:14 # pinned as it is the data version. DO NOT UNPIN!!!
         environment: # hardcoded because who cares
             - POSTGRES_USER=forgejo
             - POSTGRES_PASSWORD=forgejo

@@ -8,6 +8,8 @@ services:
             - TRUST_PROXY=true
             - PUID=1000
             - PGID=1000
+        labels:
+            - dev.dozzle.group=pocket-id
         ports:
             - 7069:80
         volumes:

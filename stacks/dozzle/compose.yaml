@@ -2,6 +2,7 @@ name: dozzle
 
 services:
     dozzle:
+        container_name: dozzle
         image: amir20/dozzle:v8.11 # version pin since we are giving socket access
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock

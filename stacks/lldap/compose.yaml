@@ -2,6 +2,7 @@ name: lldap
 
 services:
     lldap:
+        container_name: lldap
         image: lldap/lldap:stable
         volumes:
             - "../../data/lldap:/data"

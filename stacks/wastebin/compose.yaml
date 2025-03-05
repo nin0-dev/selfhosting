@@ -2,6 +2,7 @@ name: wastebin
 
 services:
     wastebin:
+        container_name: wastebin
         environment:
             - WASTEBIN_DATABASE_PATH=/data/state.db
         ports:

@@ -4,6 +4,8 @@ yap() {
     echo -e "\033[1;33m>>> $@ <<<\033[0m"
 }
 
+start_time=$(date +%s)
+
 # Checks
 if [[ $EUID -ne 0 ]]; then
     yap "elevating..."
@@ -53,8 +55,10 @@ yap uploading backup...
 sudo -u nin0 rclone copy $working_dir.tgz iCloud:Backup/
 
 # Clean up
+contents="Archive content: $(ls -L $working_dir | tr '\n' ' ')\\n\\nDocker data: $(ls -L data | tr '\n' ' ')"
 yap done!
-if [[ "$basedir" == "selfhosting" ]]; then
-    sleep 6
-fi
 rm -rf $working_dir*
+
+# Notify
+source .env
+curl -H "Content-Type: application/json" -d "{\"content\": \"**:floppy_disk: Backup done:** <t:$(date +%s):D> at <t:$(date +%s):T>.\\nName is \`$working_dir\`, took $(( $(date +%s) - $start_time )) seconds.\\n\`\`\`\\n$contents\\n\`\`\`\\n-# ||<@886685857560539176>||\"}" "https://discord.com/api/webhooks/1346922376603893831/$DISCORD_WEBHOOK"

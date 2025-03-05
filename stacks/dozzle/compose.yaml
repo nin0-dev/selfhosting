@@ -5,8 +5,7 @@ services:
         image: amir20/dozzle:v8.11 # version pin since we are giving socket access
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-        ports:
-            - 8080:8080
+        network_mode: service:tailscale
     tailscale:
         container_name: tailscale-dozzle
         image: tailscale/tailscale:latest

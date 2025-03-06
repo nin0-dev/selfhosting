@@ -1,0 +1,12 @@
+name: vde-api
+
+services:
+    vde-api:
+        container_name: vde-api
+        image: ghcr.io/vendroidenhanced/web:latest
+        env_file:
+            - .env
+        volumes:
+            - ../../data/vde-api:/app/data
+        ports:
+            - 8637:8637

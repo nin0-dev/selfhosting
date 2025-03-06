@@ -7,7 +7,6 @@ services:
             - WASTEBIN_DATABASE_PATH=/data/state.db
         ports:
             - 8988:8088
-        user: "1000:1000"
         volumes:
             - ../../data/wastebin:/data
         image: oufinx/wastebin-arm64:latest

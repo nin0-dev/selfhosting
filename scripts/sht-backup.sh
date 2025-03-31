@@ -29,6 +29,9 @@ yap creating backup $working_dir
 mkdir $working_dir
 
 # Container data backup (raw)
+yap backing up amb docker
+scp -rP 42069 nin0@88.99.4.85:/home/nin0/docker/ $working_dir/amb-docker
+
 yap pausing containers
 for stack in stacks/*; do
     docker compose -f $stack/compose.yaml pause &> /dev/null

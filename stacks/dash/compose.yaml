@@ -2,7 +2,7 @@ name: dash
 
 services:
     dash:
-        image: mauricenino/dashdot:5.9.0 # version pin this image since we are giving host access 
+        image: mauricenino/dashdot:5.9.0 # version pin this image since we are giving host access
         restart: unless-stopped
         privileged: true
         volumes:

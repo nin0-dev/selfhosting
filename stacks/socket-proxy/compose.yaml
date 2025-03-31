@@ -31,6 +31,8 @@ services:
             - TASKS=0
             - VERSION=1
             - VOLUMES=0
+        ports:
+            - 2377:2375
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock:ro
         restart: unless-stopped

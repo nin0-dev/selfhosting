@@ -1,0 +1,36 @@
+services:
+    multi-scrobbler:
+        image: foxxmd/multi-scrobbler
+        container_name: multi-scrobbler
+        environment:
+            - TZ=America/Montreal
+            - BASE_URL=http://scrobbler:9078
+        env_file:
+            - .env
+        volumes:
+            - "../../data/multi-scrobbler:/config"
+        restart: unless-stopped
+        network_mode: service:tailscale
+    redirect:
+        container_name: redirect-scrobbler
+        image: morbz/docker-web-redirect:v1.0
+        restart: always
+        environment:
+            - REDIRECT_TARGET=scrobbler:9078
+        network_mode: service:tailscale
+    tailscale:
+        container_name: tailscale-scrobbler
+        image: tailscale/tailscale:latest
+        environment:
+            - TS_STATE_DIR=/var/lib/tailscale
+            - TS_EXTRA_ARGS=--advertise-tags=tag:admin-container --hostname=scrobbler --ssh
+        env_file:
+            - ../../.tskey
+        volumes:
+            - ../../data/tailscale-scrobbler:/var/lib/tailscale
+        devices:
+            - /dev/net/tun:/dev/net/tun
+        cap_add:
+            - net_admin
+            - sys_module
+        restart: unless-stopped

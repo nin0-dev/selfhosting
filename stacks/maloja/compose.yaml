@@ -1,0 +1,9 @@
+services:
+    maloja:
+        image: "krateng/maloja:latest"
+        ports:
+            - "42010:42010"
+        volumes:
+            - "../../data/maloja:/data"
+        environment:
+            - MALOJA_DATA_DIRECTORY=/data

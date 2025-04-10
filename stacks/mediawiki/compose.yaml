@@ -5,6 +5,6 @@ services:
         ports:
             - 6928:80
         volumes:
-            # - ./LocalSettings.php:/var/www/html/LocalSettings.php
+            - ../../data/LocalSettings.php:/var/www/html/LocalSettings.php
             - ../../data/mw-data:/var/www/data
             - ../../data/mw-images:/var/www/html/images

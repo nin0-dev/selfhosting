@@ -3,7 +3,7 @@ services:
         image: mediawiki
         container_name: mediawiki
         ports:
-            - 80:80
+            - 6928:80
         volumes:
             # - ./LocalSettings.php:/var/www/html/LocalSettings.php
             - ../../data/mw-data:/var/www/data

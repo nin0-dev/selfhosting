@@ -4,7 +4,7 @@ services:
     forgejo:
         container_name: forgejo
         restart: always
-        image: codeberg.org/forgejo/forgejo:10 # pinned to major ver to avoid issues
+        image: codeberg.org/forgejo/forgejo:11 # pinned to major ver to avoid issues
         networks:
             - forgejo
         volumes:

@@ -1,0 +1,7 @@
+name: spotify-lyrics
+services:
+    spotify-mobile-lyrics-api:
+        restart: always
+        ports:
+            - 9579:3000
+        image: ghcr.io/natoune/spotify-mobile-lyrics-api:latest

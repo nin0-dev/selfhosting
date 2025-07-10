@@ -4,14 +4,14 @@ services:
         image: ghcr.io/pocket-id/pocket-id:latest
         restart: unless-stopped
         environment:
-            - PUBLIC_APP_URL=https://auth.nin0.dev
+            - APP_URL=https://auth.nin0.dev
             - TRUST_PROXY=true
             - PUID=1000
             - PGID=1000
         labels:
             - dev.dozzle.group=pocket-id
         ports:
-            - 7069:80
+            - 7069:1411
         volumes:
             - "../../data/pocket-id:/app/backend/data"
         healthcheck:
